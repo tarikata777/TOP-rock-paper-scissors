@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        const OPTIONS = ['ROCK', 'PAPER', 'SCISSORS'];
+
+        function getComputerChoice(){
+            let choice = Math.floor(Math.random() * 3);
+            return OPTIONS[choice];
+        }
+
+        function getUserInput(){    //Gets Input from the user and checks it
+            let input = prompt("Rock, Paper or Scissors?: ").toUpperCase()
+            if (input === OPTIONS[0] || input === OPTIONS[1] || input === OPTIONS[2]){ 
+                return input;
+            }
+            else{
+                alert("Invalid Input");
+            }
+        }
+
+        function checkWinner(computer, user){
+            if ((user === "ROCK" && computer === "SCISSORS") || 
+            (user === "PAPER" && computer === "ROCK") || (user === "SCISSORS" && computer === "PAPER")){
+                console.log("Congrats, you win!");
+                return 1;
+            }
+            else{
+                console.log("You, lost! wa wa waaa");
+                return 0;
+            }
+        }
+
+        function game(){
+            for (let rounds = 0; rounds < 5; rounds++){
+                computer = getComputerChoice();
+                user = getUserInput();
+                let isWin = checkWinner(computer, user);
+                let userScore = 0;
+                let compScore = 0;
+
+                if (isWin === 1){
+                    userScore++;
+                }
+                else if (isWin === 0){
+                    compScore++;
+                }
+
+                console.log("User: ${userScore} | Computer: ${compScore}");
+            }
+        }
+
+        game();
+    </script>
+</body>
+</html>
